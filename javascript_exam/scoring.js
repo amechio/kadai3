@@ -60,10 +60,9 @@ $(document).ready(function () {
     let judge = "合格";
     // 入力したそれぞれの教科のうち、1つでも60点よりも低い点数があった場合、変数「judge」に"不合格"を再代入する処理を記述する。
     // ヒント：配列の繰り返し処理について調べてみましょう。
-    for (let i = 0; i < number; i++) {
-      if (subject_points[i] < 60);{
+    for (var i = 0; i < number; i++) {
+      if (subject_points[i] < 60){
         judge = "不合格";
-
       }break;
     }
     return judge;
@@ -92,8 +91,16 @@ $(document).ready(function () {
   // 「最終ジャッジ」(id="btn-declaration")ボタンが押された際、「function judgement()」の処理を実行させる。
   // ２回目以降に「最終ジャッジ」ボタンを押した際は、それまでに表示していたジャッジのHTML要素を削除して、新たなジャッジのHTML要素を追加する。
   // ヒント：removeメソッドについて調べてみましょう。
-  $('#btn-declaration').click(function () {
-    // $("#declaration").remove();
-    $("#declaration").text(judgement());
+  function declaration() {
+    let target = document.getElementById(`declaration`);
+    if (target != null) {
+      target.remove();
+      $("#declaration").append(judgement());
+    }else {
+      $("#declaration").append(judgement());
+    }
+  };
+  $('#btn-declaration').click(function() {
+    $("#declaration").text(declaration());
   });
 });
